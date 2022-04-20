@@ -1,4 +1,4 @@
-import { memo, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AppContext, { Todo } from "./AppContext";
 import Button from "./Button";
 
@@ -44,4 +44,4 @@ function TodoList(): JSX.Element {
   );
 }
 
-export default memo(TodoList);
+export default TodoList;
