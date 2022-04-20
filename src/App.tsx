@@ -37,7 +37,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className={logoClasses} alt="logo" />
-        <Button onClick={() => toggleDirection()}>Change direction</Button>
+        <Button onClick={toggleDirection}>Change direction</Button>
         <p/>
         <AppContext.Provider value={{ todos, addTodo, removeTodo, clickCounter, incrementClickCounter }}>
           <TodoAdder />

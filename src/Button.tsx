@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 
 function Button(props: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> ) {
   useEffect(() => { console.log(`Executing '${(props.children?.valueOf()) || ''}' Button function`) });
@@ -12,4 +12,4 @@ function Button(props: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLBu
   )
 }
 
-export default Button;
+export default memo(Button);
