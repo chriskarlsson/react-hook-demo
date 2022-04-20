@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import * as React from "react";
 import { useContext, useEffect, useState } from "react";
 import AppContext from "./AppContext";
@@ -10,9 +9,12 @@ export default function ItemAdder() {
 
   const [input, setInput] = useState('');
 
-  const { addTodo } = input !== '' ? useContext(AppContext) : {addTodo: (): void => {}};
+  const { addTodo } = useContext(AppContext);
 
   const onClick = () => {
+    if (input === '') {
+      return;
+    }
     addTodo(input);
     setInput('');
   }
