@@ -10,10 +10,12 @@ export function TodoListItem(todo: Todo): JSX.Element {
   const [todoText, setTodoText] = useState(todo.text);
 
   useEffect(() => {
-    setTimeout(function() {
+    const timeout = setTimeout(function() {
       setTodoText((todoText) => todoText + '!');
       console.log('Updating todo');
     }, 5_000);
+
+    return () => clearTimeout(timeout);
    }, []);
 
   return (
