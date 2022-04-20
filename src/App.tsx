@@ -1,31 +1,18 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Button from './Button';
-import AppContext, { Todo } from './AppContext';
+import AppContext from './AppContext';
 import ClickCounterDisplay from './ClickCounterDisplay';
 import TodoAdder from './TodoAdder';
 import TodoList from './TodoList';
+import useAppContext from './AppHook';
 
 function App() {
   useEffect(() => { console.log('Executing App function') });
   useEffect(() => { console.log('Mounting App') }, []);
 
-  const [todos, setTodos] = useState<Todo[]>([]);
-
-  const addTodo = useCallback((todo: string): void => {
-    setTodos((todos) => [...todos, {id: todos.length, text: todo}]);
-  }, []);
-
-  const removeTodo = useCallback((todo: Todo): void => {
-    setTodos((todos) => todos.filter(x => x.id !== todo.id));
-  }, []);
-  const [clickCounter, setClickCounter] = useState(0);
-
-  const incrementClickCounter = (): void => {
-    setClickCounter((clickCounter) => clickCounter + 1);
-    console.log(`Increasing counter to ${clickCounter}`);
-  };
+  const context = useAppContext();
 
   const [direction, setDirection] = useState('right');
   const toggleDirection = () => {
@@ -39,11 +26,11 @@ function App() {
         <img src={logo} className={logoClasses} alt="logo" />
         <Button onClick={toggleDirection}>Change direction</Button>
         <p/>
-        <AppContext.Provider value={{ todos, addTodo, removeTodo, clickCounter, incrementClickCounter }}>
+        <AppContext.Provider value={context}>
           <TodoAdder />
           <TodoList />
           <ClickCounterDisplay />
-          <Button onClick={() => incrementClickCounter()}>Increment</Button>
+          <Button onClick={context.incrementClickCounter}>Increment</Button>
         </AppContext.Provider>
       </header>
     </div>
