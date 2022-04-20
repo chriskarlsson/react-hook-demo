@@ -9,12 +9,12 @@ export function TodoListItem(todo: Todo): JSX.Element {
   const { removeTodo } = useContext(AppContext);
   const [todoText, setTodoText] = useState(todo.text);
 
-  // useEffect(() => {
-  //   setTimeout(function() {
-  //     setTodoText((todoText) => todoText + '!');
-  //     console.log('Updating todo');
-  //   }, 5_000);
-  //  }, []);
+  useEffect(() => {
+    setTimeout(function() {
+      setTodoText((todoText) => todoText + '!');
+      console.log('Updating todo');
+    }, 5_000);
+   }, []);
 
   return (
     <>
